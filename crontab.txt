@@ -1,1 +1,1 @@
-*/1 * * * * /app/script.sh
+*/30 * * * * /app/script.sh
