@@ -1,6 +1,6 @@
 {
   "name": "DigitalOcean Dynamic DNS",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "slug": "digitalocean-ddns",
   "description": "Create a dynamic dns solution using the DigitalOcean API",
   "url": "https://github.com/RuimteDraak/hassio-etesync-server",
