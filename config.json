@@ -21,5 +21,5 @@
     "keyfile": "str",
     "allowed_host": "str"
   },
-  "image": "ruimtedraak/home-assistant-digitalocean-ddns-{arch}"
+  "image": "ruimtedraak/home-assistant-addon-digitalocean-ddns-{arch}"
 }
