@@ -5,3 +5,162 @@
 
 trigger:
 - master
+
+variables:
+  - group: docker
+  - group: git
+  - name: versionBuilder
+    value: 'latest'
+
+stages:
+  - stage: Build
+    jobs:
+      - job: build_aamd64
+        dependsOn: 'prepare'
+        steps:
+        - task: Bash@3
+          inputs:
+            targetType: 'inline'
+            script: sudo docker login -u $(dockerUsername) -p $(dockerPassword)
+          displayName: 'Docker hub login'
+
+        - task: Bash@3
+          inputs:
+            targetTYpe: 'inline'
+            script: sudo docker pull homeassistant/amd64-builder:$(versionBuilder)
+          displayName: 'Install Builder'
+
+        - task: Bash@3
+          inputs:
+            targetType: 'inline'
+            script: |
+              sudo docker run --rm --privileged \
+                -v ~/.docker:/root/.docker \
+                -v /$(Build.SourcesDirectory):/data \
+                -v /run/docker.sock:/run/docker.sock:rw \
+                homeassistant/amd64-builder:$(versionBuilder) \
+                -t /data \
+                --amd64 \
+                --docker-hub ruimtedraak \
+                --docker-hub-check
+          displayName: 'Build images'
+
+      - job: build_i386
+        dependsOn: 'prepare'
+        steps:
+        - task: Bash@3
+          inputs:
+            targetType: 'inline'
+            script: sudo docker login -u $(dockerUsername) -p $(dockerPassword)
+          displayName: 'Docker hub login'
+
+        - task: Bash@3
+          inputs:
+            targetTYpe: 'inline'
+            script: sudo docker pull homeassistant/amd64-builder:$(versionBuilder)
+          displayName: 'Install Builder'
+
+        - task: Bash@3
+          inputs:
+            targetType: 'inline'
+            script: |
+              sudo docker run --rm --privileged \
+                -v ~/.docker:/root/.docker \
+                -v /$(Build.SourcesDirectory):/data \
+                -v /run/docker.sock:/run/docker.sock:rw \
+                homeassistant/amd64-builder:$(versionBuilder) \
+                -t /data \
+                --i386 \
+                --docker-hub ruimtedraak \
+                --docker-hub-check
+          displayName: 'Build images'
+
+      - job: build_aarch64
+        dependsOn: 'prepare'
+        steps:
+        - task: Bash@3
+          inputs:
+            targetType: 'inline'
+            script: sudo docker login -u $(dockerUsername) -p $(dockerPassword)
+          displayName: 'Docker hub login'
+
+        - task: Bash@3
+          inputs:
+            targetTYpe: 'inline'
+            script: sudo docker pull homeassistant/amd64-builder:$(versionBuilder)
+          displayName: 'Install Builder'
+
+        - task: Bash@3
+          inputs:
+            targetType: 'inline'
+            script: |
+              sudo docker run --rm --privileged \
+                -v ~/.docker:/root/.docker \
+                -v /$(Build.SourcesDirectory):/data \
+                -v /run/docker.sock:/run/docker.sock:rw \
+                homeassistant/amd64-builder:$(versionBuilder) \
+                -t /data \
+                --aarch64 \
+                --docker-hub ruimtedraak \
+                --docker-hub-check
+          displayName: 'Build images'
+
+      - job: build_armv7
+        dependsOn: 'prepare'
+        steps:
+        - task: Bash@3
+          inputs:
+            targetType: 'inline'
+            script: sudo docker login -u $(dockerUsername) -p $(dockerPassword)
+          displayName: 'Docker hub login'
+
+        - task: Bash@3
+          inputs:
+            targetTYpe: 'inline'
+            script: sudo docker pull homeassistant/amd64-builder:$(versionBuilder)
+          displayName: 'Install Builder'
+
+        - task: Bash@3
+          inputs:
+            targetType: 'inline'
+            script: |
+              sudo docker run --rm --privileged \
+                -v ~/.docker:/root/.docker \
+                -v /$(Build.SourcesDirectory):/data \
+                -v /run/docker.sock:/run/docker.sock:rw \
+                homeassistant/amd64-builder:$(versionBuilder) \
+                -t /data \
+                --armv7 \
+                --docker-hub ruimtedraak \
+                --docker-hub-check
+          displayName: 'Build images'
+
+      - job: build_armhf
+        dependsOn: 'prepare'
+        steps:
+        - task: Bash@3
+          inputs:
+            targetType: 'inline'
+            script: sudo docker login -u $(dockerUsername) -p $(dockerPassword)
+          displayName: 'Docker hub login'
+
+        - task: Bash@3
+          inputs:
+            targetTYpe: 'inline'
+            script: sudo docker pull homeassistant/amd64-builder:$(versionBuilder)
+          displayName: 'Install Builder'
+
+        - task: Bash@3
+          inputs:
+            targetType: 'inline'
+            script: |
+              sudo docker run --rm --privileged \
+                -v ~/.docker:/root/.docker \
+                -v /$(Build.SourcesDirectory):/data \
+                -v /run/docker.sock:/run/docker.sock:rw \
+                homeassistant/amd64-builder:$(versionBuilder) \
+                -t /data \
+                --armhf \
+                --docker-hub ruimtedraak \
+                --docker-hub-check
+          displayName: 'Build images'
