@@ -1,0 +1,25 @@
+{
+  "name": "DigitalOcean Dynamic DNS",
+  "version": "0.0.1",
+  "slug": "digitalocean-ddns",
+  "description": "Create a dynamic dns solution using the DigitalOcean API",
+  "url": "https://github.com/RuimteDraak/hassio-etesync-server",
+  "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
+  "startup": "application",
+  "boot": "auto",
+  "map": [],
+  "homeassistant_api": false,
+  "options": {
+    "ssl": true,
+    "certfile": "fullchain.pem",
+    "keyfile": "privkey.pem",
+    "allowed_host": "*"
+  },
+  "schema": {
+    "ssl": "bool",
+    "certfile": "str",
+    "keyfile": "str",
+    "allowed_host": "str"
+  },
+  "image": "ruimtedraak/home-assistant-digitalocean-ddns-{arch}"
+}
