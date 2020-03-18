@@ -16,7 +16,6 @@ stages:
   - stage: Build
     jobs:
       - job: build_aamd64
-        dependsOn: 'prepare'
         steps:
         - task: Bash@3
           inputs:
@@ -46,7 +45,6 @@ stages:
           displayName: 'Build images'
 
       - job: build_i386
-        dependsOn: 'prepare'
         steps:
         - task: Bash@3
           inputs:
@@ -76,7 +74,6 @@ stages:
           displayName: 'Build images'
 
       - job: build_aarch64
-        dependsOn: 'prepare'
         steps:
         - task: Bash@3
           inputs:
@@ -106,7 +103,6 @@ stages:
           displayName: 'Build images'
 
       - job: build_armv7
-        dependsOn: 'prepare'
         steps:
         - task: Bash@3
           inputs:
@@ -136,7 +132,6 @@ stages:
           displayName: 'Build images'
 
       - job: build_armhf
-        dependsOn: 'prepare'
         steps:
         - task: Bash@3
           inputs:
