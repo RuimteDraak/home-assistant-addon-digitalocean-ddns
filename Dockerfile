@@ -14,4 +14,8 @@ RUN apk add --no-cache py-pip
 WORKDIR /app
 RUN pip install -r requirements.txt
 
+RUN chmod +x /app/entry.sh
+RUN chmod +x /app/script.sh
+RUN chmod 755 -R /app
+
 CMD ["/app/entry.sh"]
