@@ -32,5 +32,8 @@ stages:
         - task: PowerShell@2
           inputs:
             targetType: 'filePath'
+            env:
+              addonName: $(addonName)
+              gitRepositoryToken: $(gitRepositoryToken)
             filePath: '.build/push-to-repository.ps1'
           displayName: 'Push to repository'
