@@ -4,3 +4,7 @@ variables:
   - group: git
   - name: builderVersion
     value: 'latest'
+  - name: addonName
+    value: 'ditalocean-ddns'
+  - name: repository
+    value: 'RuimteDraak/hassio-repository.git'
