@@ -31,6 +31,6 @@ stages:
         steps:
         - task: PowerShell@2
           inputs:
-            targetType: 'file'
+            targetType: 'filePath'
             filePath: '.build/push-to-repository.ps1'
-          displayName: 'Update repository'
+          displayName: 'Push to repository'
