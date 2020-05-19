@@ -23,3 +23,9 @@ stages:
               architecture: armhf
         steps:
           - template: .build/build-container.yaml
+
+  - stage: Deploy 
+    jobs:
+      - job: update_repository
+        steps:
+          - template: .build/push-to-repository.yaml
