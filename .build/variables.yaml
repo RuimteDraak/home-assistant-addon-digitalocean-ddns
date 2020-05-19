@@ -1,0 +1,6 @@
+variables:
+    # docker group contains dockerUsername and dockerPassword
+  - group: Docker
+  - group: git
+  - name: builderVersion
+    value: 'latest'
